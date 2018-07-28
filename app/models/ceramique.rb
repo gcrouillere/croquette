@@ -2,17 +2,9 @@ class Ceramique < ApplicationRecord
   include AlgoliaSearch
   # extend FriendlyId
 
-  extend Mobility
-  translates :name, type: :string, fallbacks: { fr: :en, en: :fr }, locale_accessors: [:en, :fr]
-  translates :description, type: :text, fallbacks: { fr: :en, en: :fr }, locale_accessors: [:en, :fr]
-
   algoliasearch do
-    add_attribute :translated_name_fr
-    add_attribute :translated_name_en
-    add_attribute :translated_description_fr
-    add_attribute :translated_description_en
-    add_attribute :translated_category_en
-    add_attribute :translated_category_fr
+    attribute :name
+    attribute :description
     attribute :category
   end
 
@@ -33,32 +25,7 @@ class Ceramique < ApplicationRecord
 
 
   def to_param
-    name_param = self.send(I18n.locale == :fr ? (name_fr.present? ? "name_fr" : (name_en.present? ? "name_en" : "name")) : (name_en.present? ? "name_en" : "name")) || ""
-    category_param = category.send(I18n.locale == :fr ? (category.name_fr.present? ? "name_fr" : (category.name_en.present? ? "name_en" : "name")) : (category.name_en.present? ? "name_en" : "name")) || ""
-    [id, name_param.parameterize, category_param.parameterize].join("-")
+    [id, name.parameterize, category.name.parameterize].join("-")
   end
 
-  def translated_name_fr
-    self.name_fr
-  end
-
-  def translated_name_en
-    self.name_en
-  end
-
-  def translated_description_fr
-    self.description_fr
-  end
-
-  def translated_description_en
-    self.description_en
-  end
-
-  def translated_category_fr
-    self.category.name_fr
-  end
-
-  def translated_category_en
-    self.category.name_en
-  end
 end

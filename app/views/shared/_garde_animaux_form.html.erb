@@ -1,0 +1,16 @@
+<%= simple_form_for(@user, url: user_garde_domicile_path, method: :post) do |form| %>
+  <h2 class="laptop hidden-sm hidden-xs">Effectuez votre demande de garde à domicile avec ce fomulaire :</h2>
+  <h2 class="mobile hidden-lg hidden-md">Effectuez votre demande de garde à domicile avec ce fomulaire :</h2>
+  <%= form.input :last_name, required: true, label: "Nom" %>
+  <%= form.input :tel, required: true, label: "Téléphone" %>
+  <%= form.input :tracking, as: :text, required: true, label: "Message" %>
+  <%= form.input :email, required: true, label: "Email" %>
+  <%= form.input :first_name, :as => :hidden, :input_html => { :value => "Garde à domicile" } %>
+  <%= form.input :country, :as => :hidden, :input_html => { :value => "FR" } %>
+  <%= form.input :adress, :as => :hidden, :input_html => { :value => "FR" } %>
+  <%= form.input :city, :as => :hidden, :input_html => { :value => "FR" } %>
+  <%= form.button :submit, t(:save), id: "temoignage-submit", class: "btn-primary" %>
+<% end %>
+
+
+

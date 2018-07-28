@@ -22,6 +22,9 @@ class User < ApplicationRecord
   has_attachment :avatarphoto
   has_attachment :cityphoto
   has_attachment :logophoto
+  has_attachment :info1photo
+  has_attachment :info2photo
+  has_attachment :gardephoto
   has_attachments :homerightphotos, maximum: 2
   has_attachment :darktheme1photo
   has_attachment :darktheme2photo
@@ -74,4 +77,19 @@ class User < ApplicationRecord
     end
     return user
   end
+
+  def self.user_garde_domicile(user_params_i)
+    user_params = user_params_i.slice(:last_name, :tel, :tracking, :email, :first_name, :country, :adress, :city)
+
+    user = User.find_by(email: user_params[:email])
+    if user
+      user.update(tracking: user_params[:tracking]) if user_params[:tracking]
+      user.update(tel: user_params[:tel]) if user_params[:tel]
+    else
+      user = User.new(user_params)
+      user.password = Devise.friendly_token[0,20]
+    end
+    return user
+  end
+
 end

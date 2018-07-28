@@ -1,161 +1,96 @@
-<!-- Right Navigation LAPTOP -->
-<div class="navbar-laptop hidden-xs hidden-sm">
-  <!-- Logo -->
-  <%= link_to root_path, class: "navbar-brand", title: t(:navbar_home_link) do %>
-    <%= render 'shared/logo_pic' %>
-    <%= @logositepictag %>
-  <% end %>
-
-  <!-- Different navigation if login or not -->
-  <% if user_signed_in? %>
-
-    <!-- Navbar right when connected -->
-    <div class="navbar-item">
-      <div class="nav-bar-list">
-        <% if current_user.admin %>
-          <%= link_to admin_root_path do %>
-            <span><i class="fa fa-unlock-alt"></i> Administration</span>
-          <% end %>
+<div class="navbar-laptop-lighttheme nav-mobile">
+<!-- Language - Contact - Sign-in - Cart -->
+  <div class="nav-top-section">
+    <div class="nav-top-left">
+      <div class="icone-bloc top-section-item laptop-item">
+        <%= link_to contact_path, title: "Accédez au formulaire de contact", class: "nav-link top-nav-link" do %>
+          <i class="fas fa-phone"></i>
+          <span>06 00 00 00 00</span>
         <% end %>
-        <%= link_to ceramiques_path do %>
-          <span><i class="fa fa-bars"></i> <%= t(:shop_link) %></span>
-        <% end %>
-        <%= link_to info_path do %>
-          <span><i class="fa fa-female"></i> <%= t(:info_link) %></span>
-        <% end %>
-        <%= link_to articles_path do %>
-          <span><i class="fas fa-pen-square"></i> <%= t(:blog_link) %></span>
-        <% end %>
-        <%= link_to new_lesson_path do %>
-          <span><i class="far fa-calendar-alt"></i> <%= t(:lesson_link) %></span>
-        <% end %>
-        <% if session[:order].present? %>
-          <% if Order.where(id: session[:order]).present? %>
-            <% if Order.where(id: session[:order]).first.state != "lost" %>
-              <%= link_to order_path(Order.find(session[:order])) do %>
-                <span><%= image_tag "cart.svg", class: "lightcart"%></span>
-              <% end %>
-            <% end %>
-          <% end %>
-        <% end %>
-
-        <div class="dropdown">
-          <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-              <%= image_tag "#{I18n.locale.upcase}.svg", class: "flag"%>
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-langages">
-            <li><%= link_to params.merge(locale: "en", change: true).permit(:locale, :change) do %>
-                  <%= image_tag "EN.svg", class: "flag"%>
-                <% end %>
-            </li>
-            <li><%= link_to params.merge(locale: "fr", change: true).permit(:locale, :change) do %>
-                  <%= image_tag "FR.svg", class: "flag"%>
-                <% end %>
-            </li>
-          </ul>
-        </div>
-
       </div>
     </div>
-
-  <% else %>
-    <div class="navbar-item">
-      <div class="nav-bar-list">
-        <%= link_to ceramiques_path do %>
-          <span><i class="fa fa-bars"></i> <%= t(:shop_link) %></span>
+    <div class="nav-top-right">
+      <% if user_signed_in? %>
+        <div class="icone-bloc top-section-item laptop-item">
+        <%= link_to destroy_user_session_path, class: "top-nav-link", method: :delete do %>
+          <i class="fa fa-sign-out-alt"></i>
+          <span class="info-text info-text-3">SE DECONNECTER</span>
         <% end %>
-        <%= link_to info_path do %>
-            <span><i class="fa fa-female"></i> <%= t(:info_link) %></span>
-        <% end %>
-        <%= link_to articles_path do %>
-          <span><i class="fas fa-pen-square"></i> <%= t(:blog_link) %></span>
-        <% end %>
-        <%= link_to new_lesson_path do %>
-          <span><i class="far fa-calendar-alt"></i> <%= t(:lesson_link) %></span>
-        <% end %>
-        <% if session[:order].present? %>
-          <% if Order.where(id: session[:order]).present? %>
-            <% if Order.where(id: session[:order]).first.state != "lost" %>
-              <%= link_to order_path(Order.find(session[:order])) do %>
-                <span><%= image_tag "cart.svg", class: "lightcart"%></span>
-              <% end %>
-            <% end %>
-          <% end %>
-        <% end %>
-
-        <div class="dropdown">
-          <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-              <%= image_tag "#{I18n.locale.upcase}.svg", class: "flag"%>
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-langages">
-            <li><%= link_to params.merge(locale: "en", change: true).permit(:locale, :change) do %>
-                  <%= image_tag "EN.svg", class: "flag"%>
-                <% end %>
-            </li>
-            <li><%= link_to params.merge(locale: "fr", change: true).permit(:locale, :change) do %>
-                  <%= image_tag "FR.svg", class: "flag"%>
-                <% end %>
-            </li>
-          </ul>
         </div>
-      </div>
-    </div>
-  <% end %>
-  </div>
-
-<!-- Right Navigation MOBILE -->
-<div class="navbar-mobile hidden-md hidden-lg">
- <!-- Logo -->
-  <%= link_to root_path, class: "navbar-brand-mobile" do %>
-    <%= render 'shared/logo_pic' %>
-    <%= @logositepictag %>
-  <% end %>
-
-  <div class="navbar-item">
-    <div class="list-mobile">
-      <%= link_to ceramiques_path do %>
-          <span><%= t(:shop_link_mobile) %></span>
-        <% end %>
-      <%= link_to info_path do %>
-        <%= image_tag "info.svg", class: "infoimg"%>
+      <% else %>
+        <div class="icone-bloc top-section-item laptop-item">
+          <%= link_to new_user_session_path, title: "Accès à votre compte", class: "navbar-item navbar-link top-nav-link" do %>
+            <i class="fa fa-sign-in-alt"></i>
+            <span class="info-text info-text-3"><%=t(:connect).upcase%></span>
+          <% end %>
+        </div>
       <% end %>
-      <%= link_to articles_path do %>
-        <!-- <i class="fas fa-pen-square"></i> -->
-        <%= image_tag "blog.svg", class: "blogimg"%>
-      <% end %>
-      <%= link_to new_lesson_path do %>
-        <span><%= t(:lesson_link_mobile) %></span>
-      <% end %>
-
       <% if session[:order].present? %>
         <% if Order.where(id: session[:order]).present? %>
           <% if Order.where(id: session[:order]).first.state != "lost" %>
-            <%= link_to order_path(Order.find(session[:order])) do %>
+            <%= link_to order_path(Order.find(session[:order])), class: "top-section-item top-nav-link" do %>
               <span><%= image_tag "cart.svg", class: "lightcart"%></span>
             <% end %>
           <% end %>
         <% end %>
       <% end %>
-
-      <div class="dropdown">
-        <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-            <%= image_tag "#{I18n.locale.upcase}.svg", class: "flag"%>
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-langages">
-          <li><%= link_to params.merge(locale: "en", change: true).permit(:locale, :change) do %>
-                <%= image_tag "EN.svg", class: "flag"%>
-              <% end %>
-          </li>
-          <li><%= link_to params.merge(locale: "fr", change: true).permit(:locale, :change) do %>
-                <%= image_tag "FR.svg", class: "flag"%>
-              <% end %>
-          </li>
-        </ul>
-      </div>
     </div>
   </div>
+  <!-- Logo -->
+  <div class="navbar-logo">
+  <%= link_to root_path, class: "home-link", title: "Retour à l'accueil de la boutique" do %>
+    <%= render 'shared/logo_pic' %>
+    <%= @logositepictag %>
+  <% end %>
+  </div>
+  <!-- Bottom Links -->
+  <div class="navbar-item">
+    <div class="nav-bar-list hidden-xs hidden-sm">
+      <%= link_to root_path, title: "Liste des produits en vente dans la boutique", class: "nav-link" do %>
+        <span ><%=t(:home_page).upcase%></span>
+      <% end %>
+      <%= link_to ceramiques_path, title: "Liste des produits en vente dans la boutique", class: "nav-link" do %>
+        <span ><%=t(:shop_link).upcase%></span>
+      <% end %>
+      <%= link_to garde_animaux_domicile_path, title: "Demandez une garde à domicile", class: "nav-link" do %>
+        <span >GARDE D'ANIMAUX</span>
+      <% end %>
+      <%= link_to info_path, title: "Présentation de Moustache et Compagnie", class: "nav-link hidden-xs hidden-sm" do %>
+        <span><%=t(:info_link).upcase%></span>
+      <% end %>
+      <%= link_to contact_path, title: "Accédez au formulaire de contact", class: "nav-link hidden-xs hidden-sm" do %>
+        <span><%=t(:contact).upcase%></span>
+      <% end %>
+    </div>
 
+    <div class="nav-bar-list-mobile hidden-md hidden-lg">
+      <%= link_to root_path, title: "Liste des produits en vente dans la boutique", class: "nav-link" do %>
+        <span ><%=t(:home_page).upcase%></span>
+      <% end %>
+      <%= link_to ceramiques_path, title: "Liste des produits en vente dans la boutique", class: "nav-link" do %>
+        <span ><%=t(:shop_link_mobile).upcase%></span>
+      <% end %>
+      <div class="shop-dropdown hidden-md hidden-lg">
+        <a href="#" class="nav-link">
+          <span>SERVICES</span>
+          <span class="caret"></span>
+        </a>
+        <div class="shop-sub-list-mobile">
+          <div class="nav-categories">
+            <%= link_to garde_animaux_domicile_path, title: "Demandez une garde à domicile", class: "nav-link" do %>
+              <span >GARDE D'ANIMAUX</span>
+            <% end %>
+            <%= link_to info_path, title: "Présentation de Moustache et Compagnie", class: "nav-link" do %>
+              <span><%=t(:info_link).upcase%></span>
+            <% end %>
+            <%= link_to contact_path, title: "Accédez au formulaire de contact", class: "nav-link" do %>
+              <span><%=t(:contact).upcase%></span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
 </div>

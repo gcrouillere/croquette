@@ -12,4 +12,14 @@ class SubscribeMailer < ApplicationMailer
     mail(to: @admin.email, subject: "Message depuis la boutique en ligne")
   end
 
+  def garde_animaux_message_admin(admin)
+    @admin = admin
+    mail(to: @admin.email, subject: "Demande de garde à domicile")
+  end
+
+  def garde_animaux_message_user(user)
+    @user = user
+    mail(to: @user.email, subject: "Demande de garde à domicile")
+  end
+
 end

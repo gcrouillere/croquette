@@ -7,75 +7,52 @@
 
 <%= render 'shared/home_pics' %>
 
-<div class="jumbotron">
-  <style>
-  .jumbotron .banner {
-  background-image: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @homepicpath %>);
-  }
-  .jumbotron .banner-xs {
-  background-image: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%), url(<%= @homepicpathmobile %>);
-  }
-  </style>
-
-<!-- LAPTOP -->
-  <div class="hidden-xs">
-    <div class="banner">
-      <div class="banner-content">
-        <h1><%= t(:home_h1)%></h1>
-        <p><%= t(:home_teaser)%></p>
-        <%= link_to t(:home_button), ceramiques_path, class: "btn btn-primary btn-lg btn-home" %>
+<div class="homepage-text">
+  <% if user_signed_in? && current_user.admin %>
+      <% article_typing("accueil", "vertical", "markdown1", "live-text1", "input1") %>
+      <% @markdown = @markdown1 %>
+      <div class="live-text">
+        <%= render 'shared/articletyping' %>
       </div>
-        <%= photo_update('productphoto', 30, '', '', 30, '.homepic', "Mise à jour photo d'accueil")%>
-        <%= photo_update('productphotomobile', 30, '', '', 412, '.homepicmobile', "Mise à jour photo d'accueil pour mobiles")%>
-        <%= photo_update('logophoto', 30, '', '', 785, '.logopic', "Mise à jour logo")%>
+  <% else %>
+    <div class="plain-text">
+      <% article_display("accueil", "vertical") %>
+      <%= @markdown.html_safe %>
     </div>
-  </div>
-
-<!-- MOBILE -->
-  <div class="hidden-sm hidden-md hidden-lg">
-    <div class="banner-xs">
-      <div class="banner-content-xs">
-        <h1><%= t(:home_h1)%></h1>
-        <p><%= t(:home_teaser)%></p>
-        <%= link_to t(:home_button), ceramiques_path, class: "btn btn-primary btn-home" %>
-      </div>
-    </div>
-  </div>
-
+  <% end %>
 </div>
 
-<div class="home-text hidden-xs hidden-sm">
-  <div class="text">
-    <div class="text-left col-xs-4">
-      <% if user_signed_in? && current_user.admin %>
-          <% article_typing("accueil-gauche", "vertical", "markdown1", "live-text1", "input1") %>
-          <% @markdown = @markdown1 %>
-          <div class="live-text">
-            <%= render 'shared/articletyping' %>
-          </div>
-      <% else %>
-        <div class="plain-text">
-          <% article_display("accueil-gauche", "vertical") %>
-          <%= @markdown.html_safe %>
-        </div>
-      <% end %>
-    </div>
-    <div class="text-right col-xs-8">
-      <% if user_signed_in? && current_user.admin %>
-          <% article_typing("accueil-droit", "vertical", "markdown2", "live-text2", "input2") %>
-          <% @markdown = @markdown2 %>
-          <div class="live-text">
-            <%= render 'shared/articletyping' %>
-          </div>
-      <% else %>
-        <div class="plain-text">
-          <% article_display("accueil-droit", "vertical") %>
-          <%= @markdown.html_safe %>
-        </div>
-      <% end %>
-
-    </div>
+<div class="homepage-logo-strip">
+  <%= cl_image_tag @homepicpath, class: "homepage-logo hidden-xs", alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}" %>
+  <%= cl_image_tag @homepicpathmobile, class: "homepage-logo hidden-sm hidden-md hidden-lg", alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}" %>
+  <%= photo_update('productphoto', 30, '', '', 30, '.homepic', "Mise à jour photo d'accueil")%>
+  <%= photo_update('productphotomobile', 30, '', '', 412, '.homepicmobile', "Mise à jour photo d'accueil pour mobiles")%>
+  <%= photo_update('logophoto', 30, '', '', 785, '.logopic', "Mise à jour logo")%>
 </div>
+
+<div class="company-services hidden-xs">
+  <%= link_to "Shop", ceramiques_path, class: "btn-home btn-shop" %>
+  <%= link_to "Garde d'animaux", garde_animaux_domicile_path, class: "btn-home btn-garde" %>
+</div>
+
+<div class="company-services-mobile hidden-sm hidden-md hidden-lg">
+  <%= link_to "Shop", ceramiques_path, class: "btn-home btn-shop" %>
+  <%= link_to "Garde d'animaux", garde_animaux_domicile_path, class: "btn-home btn-garde" %>
+</div>
+
+<% if @ceramiques.present? %>
+  <div class="container home-page-ceramique-container">
+    <div class="row">
+      <div class="home-page-ceramique-list">
+        <% @ceramiques.each do |ceramique| %>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <%= render 'shared/ceramiques_cards_default', ceramique: ceramique %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
 
 <% content_for(:after_js) do %>
   <script type="application/ld+json">

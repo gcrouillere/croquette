@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get '/confirmation', to: 'pages#confirmation'
   get '/info', to: 'pages#info'
   get '/contact', to: 'pages#contact'
+  get '/garde_animaux_domicile', to: 'pages#garde_animaux_domicile'
   get '/cgv', to: 'pages#cgv'
   get '/legal', to: 'pages#legal'
   get '/google906057532e2dbb7e', to: 'pages#google906057532e2dbb7e'
@@ -35,7 +36,8 @@ Rails.application.routes.draw do
   get 'sitemap.xml', :to => 'sitemap#sitemap', :defaults => { :format => 'xml' }
 
   #Subscribe
-  post '/user-subscribe', to: "users#subscribe"
+  post '/user_subscribe', to: "users#subscribe"
+  post '/user_garde_domicile', to: "users#garde_animaux_domicile_user_create"
 
   #Root
   root to: 'pages#home'

@@ -12,77 +12,56 @@
 
   <!-- LAPTOP -->
     <div class="hidden-xs hidden-sm col-sm-12">
-      <div class="wrapper">
-        <%= photo_update('avatarphoto', 35, '', '', 15, '.avatarpic', "Mise à jour photo perso")%>
-        <%= @avatarpictag %>
+      <div class="wrapper-lighttheme first-wrapper-lighttheme">
+        <%= photo_update('info1photo', 35, '', '', 15, '.info1photopic', "Mise à jour photo info 1")%>
+        <%= @info1pictag %>
 
         <% if user_signed_in? && current_user.admin %>
           <% article_typing("info", "horizontal", "markdown1", "live-text1", "input1") %>
           <% @markdown = @markdown1 %>
           <%= render 'shared/articletyping' %>
         <% else %>
-            <div id="live-text">
-              <% article_display("info", "horizontal") %>
-              <%= @markdown.html_safe %>
-            </div>
+          <div id="live-text">
+            <% article_display("info", "horizontal") %>
+            <%= @markdown.html_safe %>
+          </div>
         <% end %>
       </div>
 
-      <div class="localisation">
-        <%= photo_update('cityphoto', 15, '', '', 15, '.citypic', "Mise à jour photo ville")%>
-        <div class="img-city"><%= @citypictag%></div>
-        <div id="map"></div>
-      </div>
+      <div class="wrapper-lighttheme second-wrapper">
+        <% if user_signed_in? && current_user.admin %>
+          <% article_typing("info-bottom", "horizontal", "markdown2", "live-text2", "input2") %>
+          <% @markdown = @markdown2 %>
+          <%= render 'shared/articletyping' %>
+        <% else %>
+          <div id="live-text">
+            <% article_display("info-bottom", "horizontal") %>
+            <%= @markdown.html_safe %>
+          </div>
+        <% end %>
 
+        <%= photo_update('info2photo', 35, 15, '', '', '.info2photopic', "Mise à jour photo info 2")%>
+        <%= @info2pictag %>
+      </div>
     </div>
 
   <!-- MOBILE -->
    <div class="col-xs-12 hidden-md hidden-lg mobile-info">
-      <div class="wrapper-mobile">
-        <div class="img-avatar-mobile"><%= @avatarpictagmobile %></div>
+      <div class="wrapper-mobile-lightheme first-wrapper-mobile-lighttheme">
+        <div class="img-avatar-mobile"><%= @info1pictag %></div>
+        <% article_display("info", "horizontal") %>
         <%= @markdown.html_safe %>
       </div>
-
-      <div class="localisation-mobile">
-        <div class="img-city-mobile"><%= @citypictag%></div>
-        <div id="map-mobile"></div>
+      <div class="wrapper-mobile-lightheme">
+        <div class="img-avatar-mobile"><%= @info2pictag %></div>
+        <% article_display("info-bottom", "horizontal") %>
+        <%= @markdown.html_safe %>
       </div>
     </div>
-
   </div>
 </div>
 
 <% content_for(:after_js) do %>
-  <script>
-   $(document).ready(function() {
-      var handler1 = Gmaps.build('Google');
-      handler1.buildMap({internal: {id: 'map'}}, function(){
-        markers1 = handler1.addMarkers([
-          {
-            lat: <%= ENV['LAT'].to_f %>,
-            lng: <%= ENV['LNG'].to_f %>,
-            infowindow: "<%= "Les #{ENV['MODEL']} de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>"
-          }
-        ]);
-        handler1.bounds.extendWith(markers1);
-        handler1.getMap().setCenter({lat: <%= ENV['LAT'].to_f %>, lng: <%= ENV['LNG'].to_f %>});
-        handler1.getMap().setZoom(6);
-      });
-
-      var handler = Gmaps.build('Google');
-      handler.buildMap({internal: {id: 'map-mobile'}}, function(){
-        marker = handler.addMarkers([
-          {
-            lat: <%= ENV['LAT'].to_f %>,
-            lng: <%= ENV['LNG'].to_f %>
-          }
-        ]);
-        handler.bounds.extendWith(marker);
-        handler.getMap().setCenter({lat: <%= ENV['LAT'].to_f %>, lng: <%= ENV['LNG'].to_f %>});
-        handler.getMap().setZoom(6);
-      });
-    });
-  </script>
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",

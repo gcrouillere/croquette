@@ -1,0 +1,13 @@
+<% @gardepictag = image_tag ENV['GARDE'], class: "img-avatar", alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}" %>
+
+<% if @admin %>
+
+  <% if @admin.gardephoto.present? %>
+    <% if @admin.gardephoto.width.to_f / (@admin.gardephoto.height) > 1.2 %>
+      <% @gardepictag = cl_image_tag @admin.gardephoto.path, :width => 450, :height => 390, :crop => :thumb, :gravity => :face, class: "img-avatar", alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}" %>
+    <% else %>
+      <% @gardepictag = cl_image_tag @admin.gardephoto.path, class: "img-avatar", alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}"%>
+    <% end %>
+  <% end %>
+
+<% end %>

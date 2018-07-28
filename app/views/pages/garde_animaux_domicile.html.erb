@@ -1,0 +1,45 @@
+<% content_for(:description) do %>
+
+<% end %>
+<% content_for(:title_tag) do %>
+
+<% end %>
+
+<%= render 'shared/garde_pics' %>
+
+<div class="container">
+  <div class="row">
+
+  <!-- LAPTOP -->
+    <div class="hidden-xs hidden-sm col-sm-12">
+      <div class="wrapper-lighttheme first-wrapper-lighttheme">
+        <%= photo_update('gardephoto', 35, '', '', 15, '.gardephotopic', "Mise à jour photo")%>
+        <%= @gardepictag %>
+
+        <% if user_signed_in? && current_user.admin %>
+          <% article_typing("garde", "horizontal", "markdown1", "live-text1", "input1") %>
+          <% @markdown = @markdown1 %>
+          <%= render 'shared/articletyping' %>
+        <% else %>
+          <div id="live-text">
+            <% article_display("garde", "horizontal") %>
+            <%= @markdown.html_safe %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+      <!-- MOBILE -->
+    <div class="col-xs-12 hidden-md hidden-lg mobile-info">
+      <div class="wrapper-mobile-lightheme first-wrapper-mobile-lighttheme garde-domicile">
+        <div class="img-avatar-mobile"><%= @gardepictag %></div>
+        <%= @markdown.html_safe %>
+      </div>
+    </div>
+
+    <div class="col-xs-12 garde-domicile">
+      <%= render 'shared/garde_animaux_form' %>
+    </div>
+
+  </div>
+</div>

@@ -1,47 +1,51 @@
 #footer {
-  background-color: $footer;
+  background-color: white;
+  box-shadow: 0px -1px 5px 0 rgba(0,0,0,0.07), 0px -1px 0 0 rgba(0,0,0,0.03);
   margin-top: 20px;
+  padding: 20px 0;
   display: flex;
   .contact-default {
     width: 25%;
     padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     a {
       text-decoration: none;
+      color: black
     }
     .icone-bloc {
       min-height: 38px;
-      display: flex;
-      align-items: center;
       margin-left: 25px;
       i {
-        color: $primary;
+        color: #19A69C;
         margin-right: 10px;
         cursor: pointer;
       }
+      i.fa-facebook {
+       margin-right: 0px;
+      }
       h6 {
-        color: $primary;
+        color: black;
         font-weight: 500;
-        opacity: 0;
+        opacity: 1;
         transition: ease 0.2s;
       }
     }
   }
   .footer-center-infos {
-    display: flex;
     width: 50%;
-    justify-content: center;
-    .center-bloc {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin: 0 20px;
+    img {
+      width: 40%;
+      margin: 0 auto;
+      display: block;
     }
-    a {
-      font-weight: 100;
-    }
-    .first-a {
-      margin-bottom: 10px;
+    .own-link {
+      color: black;
+      text-align: center;
+      font-size: 10px;
+      display: block;
+      margin-top: 15px;
     }
   }
   .mylink {
@@ -50,6 +54,10 @@
     justify-content: flex-end;
     align-items: center;
     margin-right: 25px;
+    font-size: 30px;
+    a {
+      color: #F8C5CA;
+    }
   }
 }
 
@@ -57,32 +65,23 @@ h6.visible {
   opacity: 1 !important;
 }
 
-@media all and (max-width: 600px) {
+
+@media all and (max-width: 800px) {
   #footer {
     display: block !important;
   }
   .contact-default {
-    margin-top: 12px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 100% !important;
     .icone-bloc {
-      height: 45px;
-      width: 80px;
-      display: block !important;
-      margin-left: 5px !important;
+      margin: 0 auto !important;
       text-align: center;
-      h6 {
-        font-size: 9px;
-        margin: 2px;
-        width: 65px;
-        word-wrap: break-word;
-      }
+      min-height: unset !important;
     }
   }
   .footer-center-infos {
-    // display: block !important;
     margin: 10px 0 !important;
     width: 100% !important;
     .center-bloc {

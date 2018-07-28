@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:subscribe]
+  skip_before_action :authenticate_user!, only: [:subscribe, :garde_animaux_domicile_user_create]
 
   def show
     @user = current_user
@@ -30,6 +30,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def garde_animaux_domicile_user_create
+    @user = User.user_garde_domicile(user_params)
+    if @user.save && params[:user][:tel].present? && params[:user][:tracking].present?
+      SubscribeMailer.garde_animaux_message_user(@user).deliver_now
+      SubscribeMailer.garde_animaux_message_admin(@admin).deliver_now
+      flash[:notice] = t(:message_thank_garde)
+      binding.pry
+      redirect_to garde_animaux_domicile_path
+    else
+      flash[:alert] = "La demande ne peut être envoyée. Veuillez corriger les erreurs dans le formulaire ci-dessous."
+      garde_user_errors_management
+      render 'pages/garde_animaux_domicile'
+    end
+  end
+
   private
 
    def user_params
@@ -41,6 +56,7 @@ class UsersController < ApplicationController
       :adress,
       :zip_code,
       :city,
+      :tel,
       :provider,
       :tracking,
       :uid,
@@ -50,6 +66,9 @@ class UsersController < ApplicationController
       :productphoto,
       :avatarphoto,
       :cityphoto,
+      :info2photo,
+      :info1photo,
+      :gardephoto,
       :productphotomobile,
       :lessonphoto,
       :logophoto,
@@ -62,4 +81,12 @@ class UsersController < ApplicationController
     )
   end
 
+  def garde_user_errors_management
+    unless Regexp.new('^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$').match(params[:user][:tel])
+      @user.errors[:tel] << "format incorrect"
+    end
+    unless params[:user][:tracking].present?
+      @user.errors[:tracking] << "doit être rempli(e)"
+    end
+  end
 end

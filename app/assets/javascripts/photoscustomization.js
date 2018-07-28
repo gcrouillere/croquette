@@ -77,4 +77,24 @@ $(document).ready(function() {
     $('.darktheme4photo .photo-button').removeClass('hidden');
   });
 
+  $('.info2photopic .attachinary_container').on('click', function(e){
+    $('.info2photopic .photo-button').removeClass('hidden');
+  });
+  $('.info2photopic input').on('click', function(e){
+    $('.info2photopic .photo-button').removeClass('hidden');
+  });
+
+  $('.info1photopic .attachinary_container').on('click', function(e){
+    $('.info1photopic .photo-button').removeClass('hidden');
+  });
+  $('.info1photopic input').on('click', function(e){
+    $('.info1photopic .photo-button').removeClass('hidden');
+  });
+
+  $('.gardephotopic .attachinary_container').on('click', function(e){
+    $('.gardephotopic .photo-button').removeClass('hidden');
+  });
+  $('.gardephotopic input').on('click', function(e){
+    $('.gardephotopic .photo-button').removeClass('hidden');
+  });
 });
