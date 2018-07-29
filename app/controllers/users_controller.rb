@@ -33,10 +33,9 @@ class UsersController < ApplicationController
   def garde_animaux_domicile_user_create
     @user = User.user_garde_domicile(user_params)
     if @user.save && params[:user][:tel].present? && params[:user][:tracking].present?
-      SubscribeMailer.garde_animaux_message_user(@user).deliver_now
-      SubscribeMailer.garde_animaux_message_admin(@admin).deliver_now
+      SubscribeMailer.garde_animaux_message_user(@user, @admin).deliver_now
+      SubscribeMailer.garde_animaux_message_admin(@user, @admin).deliver_now
       flash[:notice] = t(:message_thank_garde)
-      binding.pry
       redirect_to garde_animaux_domicile_path
     else
       flash[:alert] = "La demande ne peut être envoyée. Veuillez corriger les erreurs dans le formulaire ci-dessous."

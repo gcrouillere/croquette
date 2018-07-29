@@ -1,1 +1,17 @@
-garde_animaux_message_admin.text.erb
+<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>,
+
+Une personne a envoyé une demande de garde à domicile depuis ton site.
+
+Nom : <%= @user.last_name %>
+
+Email : <%= @user.email %>
+
+Telephone : <%= @user.tel %>
+
+Message :
+
+---------------------------
+<%= @user.tracking %>
+---------------------------
+
+Ton site préféré :) !

@@ -1,1 +1,9 @@
-garde_animaux_message_user
+Bonjour <%= @user.last_name %>,
+
+Votre demande de garde à domicile a été reçue. La Tournée des Moustaches va prendre contact avec vous.
+
+Cordialement
+
+<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
+email : <%= "#{ENV['EMAIL']}" %>
+téléphone : <%= "#{ENV['TELEPHONE']}" %>

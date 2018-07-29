@@ -12,6 +12,8 @@ ActiveAdmin.register User, as: 'Clients' do
         "Message via contact - #{user.first_name}"
       elsif user.first_name.include?("domicile")
         "Garde à domicile - #{user.last_name}"
+      elsif user.admin
+        "Administrateur - #{user.last_name}"
       else
         "Commande - " + user.first_name + " " + user.last_name
       end
