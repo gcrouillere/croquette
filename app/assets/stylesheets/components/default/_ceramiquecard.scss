@@ -94,11 +94,10 @@
   }
 
   h2 {
-    margin-top: 23px;
-    max-width: 270px;
+    text-align: center;
     font-size: $font-size-h4;
     color: $h2card;
-    font-weight: 300;
+    font-weight: 100;
   }
 
   h2, h3 {
@@ -149,13 +148,14 @@
     width: 109px;
     height: 44px;
     background: $card-background;
-    border: 1px solid lighten($primary, 10%);
+    border: 1px solid grey;
     text-align: center;
     border-radius: 27px;
     margin: 0;
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1);
     .prix-index-mobile {
       font-size: $font-size-h4;
+      text-shadow: 1px 1px #F8C5CA;
       margin: 0;
       margin-top: 3px;
     }
@@ -181,6 +181,7 @@
     box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1);
     .prix-index-mobile {
       font-size: $font-size-h4;
+      text-shadow: 1px 1px #F8C5CA;
       margin: 0;
       margin-top: 3px;
     }
@@ -188,8 +189,6 @@
   .card-mobile-h2 {
     text-align: center;
     margin: 19px auto;
-    text-shadow: 1px 1px #f1f1f1;
-    color: #555;
   }
 }
 
@@ -233,8 +232,14 @@
   }
 }
 
-@media all and (max-width: 800px) {
+@media all and (max-width: 990px) {
   .no-ceramique-list {
     margin-top: 50px;
+  }
+}
+
+@media all and (max-width: 990px) and (min-width: 600px){
+  .home-page-ceramique-container .ceramique-2 {
+    display: none;
   }
 }

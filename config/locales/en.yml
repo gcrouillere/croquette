@@ -88,7 +88,7 @@ en:
   total_amount: "Total amount"
   total_articles: "Product(s) total"
   total_port: "Shipping costs"
-  stripe_paypal: "Pay by card or by Paypal:"
+  stripe_paypal: "Pay by card:"
   secured_payment: "Payment secured by"
   cards: "Accepted cards"
   promo: "Promo code"

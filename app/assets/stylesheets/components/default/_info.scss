@@ -6,7 +6,7 @@
 
   .img-avatar {
     width: 40%;
-    height: 40%;
+    height: auto;
     flex: 0 0 25%;
     border-radius: $project-border-radius;
     margin-right: 10px;
@@ -101,8 +101,8 @@
   .img-avatar-mobile {
     text-align: center;
     img {
-      width: $mobile-avatar-image-width;
-      height: $mobile-avatar-image-width;
+      width: 100%;
+      height: auto;
       border: 1px solid white;
       box-shadow: 1px 1px 1px grey;
       border-radius: 50%;

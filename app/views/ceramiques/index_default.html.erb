@@ -74,9 +74,9 @@
 
     <% if  @ceramiques.present? %>
       <div class="col-xs-12 col-lg-9 ceramique-list">
-        <% @ceramiques.each do |ceramique| %>
+        <% @ceramiques.each_with_index do |ceramique, index| %>
           <div class="col-xs-12 col-sm-6 col-md-6">
-            <%= render 'shared/ceramiques_cards_default', ceramique: ceramique %>
+            <%= render 'shared/ceramiques_cards_default', ceramique: ceramique, index: index %>
           </div>
         <% end %>
       </div>

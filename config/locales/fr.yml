@@ -104,7 +104,7 @@ fr:
   total_amount: "Montant Total"
   total_articles: "Total article(s)"
   total_port: "Frais de port"
-  stripe_paypal: "Payer par carte ou par Paypal :"
+  stripe_paypal: "Payer par carte :"
   secured_payment: "Paiement sécurisé par"
   cards: "Cartes acceptées"
   promo: "Code promo"

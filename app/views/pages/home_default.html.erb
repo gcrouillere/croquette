@@ -44,9 +44,9 @@
   <div class="container home-page-ceramique-container">
     <div class="row">
       <div class="home-page-ceramique-list">
-        <% @ceramiques.each do |ceramique| %>
+        <% @ceramiques.each_with_index do |ceramique, index| %>
           <div class="col-xs-12 col-sm-6 col-md-4">
-            <%= render 'shared/ceramiques_cards_default', ceramique: ceramique %>
+            <%= render 'shared/ceramiques_cards_default', ceramique: ceramique, index: index %>
           </div>
         <% end %>
       </div>

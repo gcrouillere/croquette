@@ -19,7 +19,7 @@ Bundler.require(*Rails.groups)
 module Ceramiquesnugier
   class Application < Rails::Application
     config.generators do |generate|
-      generate.assets false
+      generate.assets true
       generate.helper false
     end
     # Initialize configuration defaults for originally generated Rails version.
@@ -27,6 +27,8 @@ module Ceramiquesnugier
 
     config.exceptions_app = self.routes
     config.i18n.load_path += Dir[Rails.root.join('locales', '*.{rb,yml}').to_s]
+    config.assets.enabled = true
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
     config.i18n.default_locale = :fr
     config.i18n.available_locales = [:fr, :en]
     # Settings in config/environments/* take precedence over those specified here.

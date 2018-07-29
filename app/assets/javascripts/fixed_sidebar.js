@@ -24,7 +24,7 @@ $(document).ready(function() {
   function checkOffset(list_header_name, navbar_name) {
     var offset = $('.last-ceramique').offset().top - $(navbar_name).height() - 137
     if ($(list_header_name).length > 0) {
-      offset -=  312
+      offset -=  275
     }
     console.log(offset)
     return offset

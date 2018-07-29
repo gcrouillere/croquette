@@ -85,7 +85,7 @@
      margin-bottom: 20px;
     }
     .devise-bottom-link {
-      font-weight: 300;
+      font-weight: 100;
       color: white;
     }
     .devise-bottom-link:hover {
@@ -99,7 +99,7 @@
   }
 }
 
-@media all and (max-width: 800px) {
+@media all and (max-width: 990px) {
   .devise-container-darktheme .content-devise{
     margin-top: 90px;
   }
