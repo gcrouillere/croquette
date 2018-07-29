@@ -15,7 +15,7 @@ class CeramiquesController < ApplicationController
       filter_globally if params[:search].present?
       filter_by_price if params[:prix_max].present?
     end
-    @ceramiques = Ceramique.where(id: @ceramiques.map(&:id)).order(updated_at: :desc)
+    @ceramiques = Ceramique.where(id: @ceramiques.map(&:id)).order(position: :asc).order(updated_at: :desc)
     @twitter_url = request.original_url.to_query('url')
     @facebookid = ""
     render "index_#{@active_theme.name}"
@@ -51,7 +51,7 @@ class CeramiquesController < ApplicationController
 
   def filter_by_category
     categories = params[:categories].map {|category| "%#{category}%" }
-    @ceramiques = @ceramiques.joins(:category).merge(Category.i18n {name.matches_any(categories)})
+    @ceramiques = @ceramiques.joins(:category).where('categories.name ILIKE ANY ( array[?] )', categories)
   end
 
   def filter_by_price

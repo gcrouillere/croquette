@@ -3,9 +3,7 @@ class Ceramique < ApplicationRecord
   # extend FriendlyId
 
   algoliasearch do
-    attribute :name
-    attribute :description
-    attribute :category
+    attribute :name, :description, :category
   end
 
   belongs_to :category

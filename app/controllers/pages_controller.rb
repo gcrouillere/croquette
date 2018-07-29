@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @dev_redirection = "https://www.creermonecommerce.fr/"
-    @ceramiques = Ceramique.last(3)
+    @ceramiques = Ceramique.order(position: :asc).order(updated_at: :desc).first(3)
     render "home_#{@active_theme.name}"
   end
 
