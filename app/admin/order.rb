@@ -4,6 +4,9 @@ ActiveAdmin.register Order do
 
   index download_links: -> { params[:action] == 'show' ? [:pdf] : nil } do
     render 'order_stats'
+    column "Reférence facture" do |order|
+      order.id
+    end
     column "Date du paiement" do |order|
       order.updated_at.strftime("%d/%m/%Y")
     end
@@ -33,7 +36,9 @@ ActiveAdmin.register Order do
   show do |order|
     attributes_table do
       row :state
-      row :ceramique
+      row "Produits" do |order|
+        order.basketlines.pluck(:ceramique_name).join(", ")
+      end
       row :amount_cents
       row :port_cents
       render 'pdf_link', { order: order }
@@ -43,7 +48,7 @@ ActiveAdmin.register Order do
   controller do
     def show
       super do |format|
-        format.pdf { render(pdf: "#{resource.id}.pdf") }
+        format.pdf { render(pdf: "Facture référence : #{resource.id}.pdf") }
       end
     end
 

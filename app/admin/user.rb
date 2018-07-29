@@ -5,13 +5,15 @@ ActiveAdmin.register User, as: 'Clients' do
   config.filters = false
 
   index do
-    column "Prénom - Nom" do |user|
+    column "Origine - Prénom Nom" do |user|
       if user.first_name.include?("newsletter")
-        "Inconnu : newsletter"
+        "Newsletter - Inconnu"
       elsif user.last_name.include?("message")
-        user.first_name
+        "Message via contact - #{user.first_name}"
+      elsif user.first_name.include?("domicile")
+        "Garde à domicile - #{user.last_name}"
       else
-        user.first_name + " " + user.last_name
+        "Commande - " + user.first_name + " " + user.last_name
       end
     end
     column :email
@@ -74,19 +76,34 @@ ActiveAdmin.register User, as: 'Clients' do
 
   show do |user|
     attributes_table do
-      row :first_name
-      row :last_name
-      row :email
-      row "Dernier achat" do |user|
-          last_order = Order.where(user: user, state: "paid").order(updated_at: :desc).first
-          last_order ? humanized_money(last_order.amount) + " € " + last_order.updated_at.strftime("le %d/%m/%Y") : "Aucun achat"
-      end
       if user.admin
         row "Délai de livraison" do |user|
           user.tracking
         end
+      elsif user.first_name.include?("newsletter")
+      elsif user.last_name.include?("message")
+        row :first_name
+        row :email
+        row "Utilisateur inscrit via : Contact" do |user|
+          "Dernier message : " + user.tracking
+        end
+      elsif user.first_name.include?("domicile")
+        row :last_name
+        row :email
+        row "Utilisateur inscrit via : Garde à domicile" do |user|
+          "Dernier message : " + user.tracking
+        end
       else
-        row :tracking
+        row "Dernier achat" do |user|
+          last_order = Order.where(user: user, state: "paid").order(updated_at: :desc).first
+          last_order ? humanized_money(last_order.amount) + " € " + last_order.updated_at.strftime("le %d/%m/%Y") : "Aucun achat"
+        end
+        row :first_name
+        row :last_name
+        row :email
+        row "N° de suivi colis" do |user|
+          user.tracking
+        end
       end
     end
   end

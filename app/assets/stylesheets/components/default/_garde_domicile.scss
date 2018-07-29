@@ -7,14 +7,13 @@
     font-size: 28px;
     margin-top: 11px;
   }
-}
+  #new_user {
+    width: 90%;
+    margin: 0 auto;
 
-#new_user {
-  width: 90%;
-  margin: 0 auto;
-
-  textarea {
-    min-height: 200px;
+    textarea {
+      min-height: 200px;
+    }
   }
 }
 
