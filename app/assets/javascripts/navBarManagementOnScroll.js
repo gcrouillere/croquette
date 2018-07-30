@@ -9,7 +9,7 @@ $(document).ready(function() {
       });
       $('.nav-bar-list-mobile').css({
         position: 'relative',
-        top: '-17px'
+        top: '6px'
       });
       $('.navbar-laptop-lighttheme').css({height: '70px'});
       $('.navbar-laptop-lighttheme').addClass('navbar-on-scroll');
@@ -23,7 +23,7 @@ $(document).ready(function() {
       });
       $('.nav-bar-list-mobile').css({
         position: 'relative',
-        top: '13px'
+        top: '19px'
       });
       $('.navbar-laptop-lighttheme').css({height: '186px'});
       $('.navbar-laptop-lighttheme').removeClass('navbar-on-scroll');
