@@ -1,22 +1,22 @@
-<% @info2pictag = image_tag ENV['INFO2'], class: "img-avatar", alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}" %>
-<% @info1pictag = image_tag ENV['INFO1'], class: "img-avatar", alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}" %>
+<% @info2pictag = image_tag ENV['INFO2'], class: "img-avatar", alt: "Les produits pour animaux de compagnie de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
+<% @info1pictag = image_tag ENV['INFO1'], class: "img-avatar", alt: "Le chat de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
 <% @avatarpictagmobile = image_tag ENV['AVATAR'], alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}"  %>
 
 <% if @admin %>
 
   <% if @admin.info1photo.present? %>
     <% if @admin.info1photo.width.to_f / (@admin.info1photo.height) > 1.2 %>
-      <% @info1pictag = cl_image_tag @admin.info1photo.path, :width => 450, :height => 390, :crop => :thumb, :gravity => :face, class: "img-avatar", alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}" %>
+      <% @info1pictag = cl_image_tag @admin.info1photo.path, :width => 450, :height => 390, :crop => :thumb, :gravity => :face, class: "img-avatar", alt: "Les produits pour animaux de compagnie de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
     <% else %>
-      <% @info1pictag = cl_image_tag @admin.info1photo.path, class: "img-avatar", alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}"%>
+      <% @info1pictag = cl_image_tag @admin.info1photo.path, class: "img-avatar", alt: "Les produits pour animaux de compagnie de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>
     <% end %>
   <% end %>
 
   <% if @admin.info2photo.present? %>
     <% if @admin.info2photo.width.to_f / (@admin.info2photo.height) > 1.2 %>
-      <% @info2pictag = cl_image_tag @admin.info2photo.path, :width => 450, :height => 390, :crop => :thumb, :gravity => :face, class: "img-avatar", alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}" %>
+      <% @info2pictag = cl_image_tag @admin.info2photo.path, :width => 450, :height => 390, :crop => :thumb, :gravity => :face, class: "img-avatar", alt: "Le chat de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}" %>
     <% else %>
-      <% @info2pictag = cl_image_tag @admin.info2photo.path, class: "img-avatar", alt: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} créateur de #{ENV['MODEL']}"%>
+      <% @info2pictag = cl_image_tag @admin.info2photo.path, class: "img-avatar", alt: "Le chat de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>
     <% end %>
   <% end %>
 
