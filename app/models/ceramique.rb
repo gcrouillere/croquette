@@ -23,7 +23,7 @@ class Ceramique < ApplicationRecord
 
 
   def to_param
-    [id, name.parameterize, category.name.parameterize].join("-")
+    [id, name.parameterize].join("-")
   end
 
 end
