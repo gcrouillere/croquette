@@ -30,6 +30,9 @@
   border: $card-border;
   text-decoration: none;
   position: relative;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
 
   .ribbon {
     z-index: 1;
@@ -100,13 +103,18 @@
     font-size: $font-size-h4;
     color: $h2card;
     font-weight: 100;
+    margin: 0;
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
   }
 
-  h2, h3 {
+  h3 {
     margin-left: 30px;
     margin-right: 30px;
     text-decoration: none;
-    h2:hover, h2:hover {
+    &:hover {
       text-decoration: none;
     }
   }
@@ -190,7 +198,10 @@
   }
   .card-mobile-h2 {
     text-align: center;
-    margin: 19px auto;
+    padding: 10px 10px 15px 10px;
+  }
+  .card-title {
+    margin: auto;
   }
 }
 

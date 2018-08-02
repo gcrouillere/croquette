@@ -39,6 +39,10 @@
     margin-right: 20px;
     font-size: $font-size-i;
   }
+
+  h4 {
+    font-size: 19px;
+  }
 }
 
 .total {
@@ -134,6 +138,9 @@
     text-align: center;
     i {
       margin: 0px;
+    }
+    h4 {
+      margin-left: 10px;
     }
   }
 }
