@@ -32,7 +32,9 @@
               <% end %>
             <% else %>
               <h3><%=t(:order_recover)%></h3>
-              <h4><%=t(:order_recover_appointment, name: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}")%></h5>
+              <h4><%=t(:order_recover_appointment, name: "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}")%></h4>
+              <h4>Téléphone : 06 01 00 12 00</h4>
+              <h4>Aucune demande de livraison ne sera prise en compte par email</h4>
             <% end %>
           </div>
         <% end %>
