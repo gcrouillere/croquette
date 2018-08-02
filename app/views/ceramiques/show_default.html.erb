@@ -43,7 +43,7 @@
           <div class="product-show-half-top-wrapper-right">
           <div class="info-add-basket">
             <div class="description">
-              <h1> <%= @ceramique.name.capitalize%> </h1>
+              <h1> <%= @ceramique.name%> </h1>
               <%= facebook_share_id("facebookshare") %>
               <p class="description"> <%= @ceramique.description.gsub(/\n/, '<br>').html_safe%> </p>
               <hr>
@@ -100,7 +100,8 @@
                   <%= link_to ceramique_path(ceramique) , title: "#{ceramique.name}", class: "same-category-product-card-link"  do %>
                   <img class="same-product-photo" src="<%= cl_image_path ceramique.photos[0].path, quality: "auto" %>" alt="<%=ceramique.name%>">
                   <div class="same-category-product-card-text">
-                    <p class="ceramique-name"><%= ceramique.name.capitalize%></p>
+                    <% ceramique.name.size > 38 ? etc = " ..." : etc = "" %>
+                    <p class="ceramique-name"><%= ceramique.name[0..37] + etc %></p>
                     <% ceramique.offer ? discount =  ceramique.offer.discount : discount = 0 %>
                     <% if discount > 0 %>
                       <p class="prix-index"><%= humanized_money(ceramique.price * (1 - discount))%> <%= currency_symbol %></h2>
@@ -130,7 +131,7 @@
 
         <div class="head">
           <%= facebook_share_id("facebooksharemobile") %>
-          <h1> <%= @ceramique.name.capitalize%> </h1>
+          <h1> <%= @ceramique.name%> </h1>
           <div class="image-xs-sm">
             <img class="img-front" src="<%= cl_image_path @ceramique.photos[0].path, quality: "auto" %>" alt="<%=@ceramique.name%>">
           </div>
