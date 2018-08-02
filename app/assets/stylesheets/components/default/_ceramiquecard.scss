@@ -200,8 +200,8 @@
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      line-height: 20px;     /* fallback */
-      max-height: 62px;      /* fallback */
+      line-height: 24px;     /* fallback */
+      max-height: 72px;      /* fallback */
       -webkit-line-clamp: 3; /* number of lines to show */
       -webkit-box-orient: vertical;
     }
@@ -211,8 +211,8 @@
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      line-height: 20px;     /* fallback */
-      max-height: 62px;      /* fallback */
+      line-height: 24px;     /* fallback */
+      max-height: 72px;      /* fallback */
       -webkit-line-clamp: 3; /* number of lines to show */
       -webkit-box-orient: vertical;
     }
