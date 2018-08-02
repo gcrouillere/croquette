@@ -46,7 +46,7 @@
 
   <% @ceramiques.each do |ceramique| %>
     <url>
-      <loc>https://<%=ENV['APPNAME']%>.herokuapp.com/<%=ENV['MODEL']%>/<%= "#{ceramique.id}-#{ceramique.name.parameterize}-#{ceramique.category.name.parameterize}" %></loc>
+      <loc>https://<%=ENV['APPNAME']%>.herokuapp.com/<%=ENV['MODEL']%>/<%= "#{ceramique.id}-#{ceramique.name.parameterize}" %></loc>
       <lastmod><%= ceramique.updated_at.strftime("%Y-%m-%d") %></lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
