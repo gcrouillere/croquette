@@ -7,7 +7,10 @@ ActiveAdmin.register Ceramique, as: 'Produits' do
     column :id
     column :position
     column :name
-    column :description
+    column "Description" do |ceramique|
+      ceramique.description.size > 200 ? etc = " ..." : etc = ""
+      ceramique.description[0..200] + etc
+    end
     column :stock
     column :weight
     column "Catégorie" do |ceramique|
@@ -90,6 +93,7 @@ show do |ceramique|
 
   def destroy
     flash[:notice] = "#{ENV['MODEL'][0...-1].capitalize} supprimé"
+    resource.basketlines.update(ceramique_id: nil)
     super do |format|
       redirect_to admin_produits_path and return
     end
