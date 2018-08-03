@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 ruby '2.3.5'
 
 gem 'devise'
@@ -34,8 +34,8 @@ gem 'stripe'
 
 #map
 gem "gmaps4rails"
-  source 'https://rails-assets.org' do
-  # https://rails-assets.org
+  source 'http://rails-assets.org' do
+  # http://rails-assets.org
   gem "rails-assets-underscore"
 end
 
