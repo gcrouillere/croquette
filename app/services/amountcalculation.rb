@@ -8,35 +8,41 @@ class Amountcalculation
   def calculate_amount(order, user)
     amount_ceramique = 0
     total_weight = 0
+    alert = ""
     order.basketlines.each do |basketline|
-      basketline.ceramique.offer ? ceramique_discount = basketline.ceramique.offer.discount : ceramique_discount = 0
-      amount_ceramique += (basketline.ceramique.price * (1 - ceramique_discount)) * basketline.quantity
-      total_weight += basketline.ceramique.weight * basketline.quantity
+      if basketline.ceramique
+        basketline.ceramique.offer ? ceramique_discount = basketline.ceramique.offer.discount : ceramique_discount = 0
+        amount_ceramique += (basketline.ceramique.price * (1 - ceramique_discount)) * basketline.quantity
+        total_weight += basketline.ceramique.weight * basketline.quantity
+      else
+        basketline.destroy
+        alert = "Un des produits n'existe plus, il a été retiré de votre panier."
+      end
     end
     if user
       if user.country == "FR" && total_weight > 0
-        fr_shipping_cost(amount_ceramique, total_weight)
+        fr_shipping_cost(amount_ceramique, total_weight, alert)
       elsif total_weight > 0
         shipping_cost = ShippingCategory.where(alpha2: user.country).where("weight >= ?", total_weight).min.price_cents.to_f / 100
-        {total: amount_ceramique, port: shipping_cost.to_money, weight: total_weight}
+        {total: amount_ceramique, port: shipping_cost.to_money, weight: total_weight, msg: alert}
       else
-        {total: 0, port: 0, weight: 0}
+        {total: 0, port: 0, weight: 0, msg: alert}
       end
     else
       if total_weight > 0
-        fr_shipping_cost(amount_ceramique, total_weight)
+        fr_shipping_cost(amount_ceramique, total_weight, alert)
       else
-        {total: 0, port: 0, weight: 0}
+        {total: 0, port: 0, weight: 0, msg: alert}
       end
     end
   end
 
-  def fr_shipping_cost(amount_ceramique, total_weight)
+  def fr_shipping_cost(amount_ceramique, total_weight, alert)
     tarif_colis = HTTParty.get(
       "https://api.laposte.fr/tarifenvoi/v1?type=colis&poids=#{total_weight}",
       headers: {"X-Okapi-Key" => ENV['LAPOSTE_API_KEY'] }
     )
-    return {total: amount_ceramique, port: tarif_colis[0]["price"].to_money, weight: total_weight}
+    return {total: amount_ceramique, port: tarif_colis[0]["price"].to_money, weight: total_weight, msg: alert}
   end
 
 end

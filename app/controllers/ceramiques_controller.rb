@@ -38,7 +38,7 @@ class CeramiquesController < ApplicationController
       if ((Time.now - order.created_at)/60/60 > ENV['BASKETDURATION'].to_f && order.state == "pending" && order.lesson.blank?) || ((Time.now - order.created_at)/60/60 > 24 && order.state == "payment page" && order.lesson.blank?)
         order.basketlines.each do |basketline|
           ceramique = basketline.ceramique
-          ceramique.update(stock: ceramique.stock + basketline.quantity)
+          ceramique.update(stock: ceramique.stock + basketline.quantity) if ceramique
         end
         if session[:order]
           wip_local_order = Order.find(session[:order])

@@ -92,8 +92,13 @@ show do |ceramique|
   end
 
   def destroy
-    flash[:notice] = "#{ENV['MODEL'][0...-1].capitalize} supprimé"
-    resource.basketlines.update(ceramique_id: nil)
+    if Order.where(state: ["pending","payment page"]).joins(:basketlines).where("basketlines.ceramique_id = ?", resource.id).present?
+      flash[:alert] = "Ce produit est dans un panier dans le processus d'achat, vous ne pouvez pas le supprimer"
+      redirect_to request.referrer and return
+    else
+      resource.basketlines.update(ceramique_id: nil)
+      flash[:notice] = "#{ENV['MODEL'][0...-1].capitalize} supprimé"
+    end
     super do |format|
       redirect_to admin_produits_path and return
     end

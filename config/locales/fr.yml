@@ -9,6 +9,7 @@ fr:
   stock_limit: "Désolé, il n'y a que %{stock} en stock"
   expired_basket: "Votre panier a expiré"
   expired_no_payment: "Votre panier a expiré, la commande est annulée. Votre CB n'a pas été débitée."
+  products_deleted_from_admin: "Un des produits n'existe plus, il a été retiré de votre panier."
   message_thank: "Merci pour votre message"
   message_thank_garde: "Merci pour votre demande, elle va être traitée"
   incorrect_fields: "Les champs ne sont pas remplis correctement"

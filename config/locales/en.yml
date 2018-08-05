@@ -9,6 +9,7 @@ en:
   stock_limit: "Sorry, only %{stock} remmain in stock"
   expired_basket: "Your basket has expired"
   expired_no_payment: "Your basket has expired, your order is canceled. No debit was processed."
+  products_deleted_from_admin: "A product present in your basket was deleted by administration. No debit was processed."
   message_thank: "Thanks for your message"
   incorrect_fields: "Some fields are incorrect"
   navbar_home_link: "Back to homepage"

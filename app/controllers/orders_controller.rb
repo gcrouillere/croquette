@@ -33,8 +33,10 @@ class OrdersController < ApplicationController
         if (current_user || @order.user.present?) && !@order.lesson.present?
           known_user = current_user || @order.user
           costs = Amountcalculation.new(@order).calculate_amount(@order, known_user)
+          flash[:alert] = costs[:msg] if costs[:msg] != ""
           @order.update(amount: costs[:total], port: costs[:port], weight: costs[:weight], user: known_user)
         end
+        @order = Order.find(params[:id])
         @amount = @order.amount
         @port = @order.port
         @weight = @order.weight
@@ -53,10 +55,12 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @basketline = Basketline.find(params[:basketline_id])
     @ceramique = @basketline.ceramique
-    @ceramique.update(stock: @ceramique.stock + @basketline.quantity)
+    @ceramique.update(stock: @ceramique.stock + @basketline.quantity) if @ceramique
     @basketline.destroy
     costs = Amountcalculation.new(@order).calculate_amount(@order, current_user)
-    @order.update(amount: costs[:total], port: costs[:port], weight: costs[:weight], ceramique: @order.ceramique.sub(@ceramique.name+",",""))
+    flash[:alert] = costs[:msg] if costs[:msg] != ""
+    @order = Order.find(params[:id])
+    @order.update(amount: costs[:total], port: costs[:port], weight: costs[:weight])
     if @order.basketlines.present?
       redirect_to order_path(@order)
     else
