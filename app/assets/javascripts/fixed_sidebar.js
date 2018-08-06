@@ -26,7 +26,6 @@ $(document).ready(function() {
     if ($(list_header_name).length > 0) {
       offset -=  275
     }
-    console.log(offset)
     return offset
   }
 
