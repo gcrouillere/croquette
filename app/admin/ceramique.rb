@@ -53,7 +53,7 @@ show do |ceramique|
       end
     end
   end
- end
+end
 
  csv do
     column :position

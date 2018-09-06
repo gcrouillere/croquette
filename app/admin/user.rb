@@ -61,7 +61,7 @@ ActiveAdmin.register User, as: 'Clients' do
         "N/A : envoi message"
       elsif last_lost_basket
         contenu_panier = last_lost_basket.basketlines.map do |basketline|
-          basketline.ceramique ? basketline.ceramique ? "#{basketline.ceramique.name} - qté: #{basketline.quantity}" : "/" : "/"
+          basketline.ceramique ? "#{basketline.ceramique.name} - qté: #{basketline.quantity}" : "/"
         end
         contenu_panier = contenu_panier.join(", ")
         if last_lost_basket.amount > 0
