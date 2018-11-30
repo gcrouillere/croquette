@@ -103,6 +103,11 @@ ActiveAdmin.register User, as: 'Clients' do
         row :first_name
         row :last_name
         row :email
+        unless user.adress == "------ à mettre à jour ------"
+          row "Adresse" do |user|
+            "#{user.adress} - #{user.zip_code} - #{user.city}"
+          end
+        end
         row "N° de suivi colis" do |user|
           user.tracking
         end
