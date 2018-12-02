@@ -13,7 +13,7 @@ ActiveAdmin.register User, as: 'Clients' do
       elsif user.first_name.include?("domicile")
         "Garde à domicile - #{user.last_name}"
       elsif user.admin
-        "Administrateur - #{user.last_name}"
+         "Administrateur - #{user.first_name} #{user.last_name}"
       else
         "Commande - " + user.first_name + " " + user.last_name
       end
@@ -145,31 +145,59 @@ ActiveAdmin.register User, as: 'Clients' do
   end
 
   csv do
-    column "Prénom" do |user|
-      user.first_name
-    end
-    column "Nom" do |user|
-      user.last_name
+    column "Origine - Prénom Nom" do |user|
+      if user.first_name.include?("newsletter")
+        "Newsletter - Inconnu"
+      elsif user.last_name.include?("message")
+        "Message via contact - #{user.first_name}"
+      elsif user.admin
+        "Administrateur - #{user.first_name} #{user.last_name}"
+      else
+        "Commande - " + user.first_name + " " + user.last_name
+      end
     end
     column :email
     column "Dernier achat" do |user|
+      if user.first_name.include?("newsletter")
+        "N/A : inscrit newsletter"
+      elsif user.last_name.include?("message")
+        "N/A : envoi message"
+      else
         last_order = Order.where(user: user, state: "paid").order(updated_at: :desc).first
         last_order ? humanized_money(last_order.amount) + " € " + last_order.updated_at.strftime("le %d/%m/%Y") : "Aucun achat"
+      end
     end
     column "Total des achats" do |user|
       total = 0
       user_orders = Order.where(user: user, state: "paid")
+      nb_achat = Order.where(user: user, state: "paid").size
       user_orders.each do |order|
         total += order.amount
       end
-      humanized_money(total) + " € "
+      if user.first_name.include?("newsletter")
+        "N/A : inscrit newsletter"
+      elsif user.last_name.include?("message")
+        "N/A : envoi message"
+      else
+        nb_achat.to_s + " achat(s) : " + humanized_money(total) + " € "
+      end
     end
     column "Nb de paniers abandonnés" do |user|
-      Order.where(user: user, state: "lost").size
+      if user.first_name.include?("newsletter")
+        "N/A : inscrit newsletter"
+      elsif user.last_name.include?("message")
+        "N/A : envoi message"
+      else
+        Order.where(user: user, state: "lost").size
+      end
     end
     column "Dernier panier abandonné" do |user|
       last_lost_basket = Order.where(user: user, state: "lost").order(updated_at: :desc).first
-      if last_lost_basket
+      if user.first_name.include?("newsletter")
+        "N/A : inscrit newsletter"
+      elsif user.last_name.include?("message")
+        "N/A : envoi message"
+      elsif last_lost_basket
         contenu_panier = last_lost_basket.basketlines.map do |basketline|
           basketline.ceramique ? "#{basketline.ceramique.name} - qté: #{basketline.quantity}" : "/"
         end
@@ -177,7 +205,7 @@ ActiveAdmin.register User, as: 'Clients' do
         if last_lost_basket.amount > 0
           humanized_money(last_lost_basket.amount) + " € " + last_lost_basket.updated_at.strftime("le %d/%m/%Y") + ". Il contenait: " + contenu_panier
         else
-          "#{last_lost_basket.updated_at.strftime("le %d/%m/%Y")}, supprimé manuellement par le client : contenu inconnu"
+          "#{last_lost_basket.updated_at.strftime("le %d/%m/%Y")}, annulé par le client. Dernier item supprimé: #{last_lost_basket.ceramique}"
         end
       else
         "/"
