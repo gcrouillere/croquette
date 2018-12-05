@@ -9,8 +9,9 @@
       font-size: 33px;
     }
   }
-  h1:nth-child(2) {
+  h2, h1:nth-child(2) {
     font-size: 1.8em;
+    text-align: center;
   }
   h1:last-of-type {
     margin-bottom: 30px;
