@@ -218,7 +218,7 @@
     "offers": {
       "@type": "Offer",
       "priceCurrency": "EUR",
-      "price": "<%= humanized_money(@ceramique.price)%>",
+      "price": "<%= humanized_money(@ceramique.price).to_s.gsub(",",".")%>",
       "priceValidUntil": "2020-12-12",
       "itemCondition": "http://schema.org/UsedCondition",
       "availability": "http://schema.org/InStock",
