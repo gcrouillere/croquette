@@ -58,10 +58,12 @@
   <script type="application/ld+json">
   {
     "@context": "http://schema.org",
-    "@type": "ArtGallery",
+    "@type": "PetStore",
     "image": ["<%=request.original_url%><%= image_path ENV['HOMEPIC']%>"],
     "@id": "<%=request.original_url%>",
-    "name": "La tournée des moustaches",
+    "name": "La Tournée des Moustaches",
+    "currenciesAccepted": "EUR",
+    "paymentAccepted": "[Credit Card]",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "45 rue Alphonse de Lamartine",
@@ -91,7 +93,7 @@
         "closes": "closed"
       }
     ],
-   "priceRange":"20€ à 800€"
+   "priceRange":"€€"
   }
   </script>
 <% end %>

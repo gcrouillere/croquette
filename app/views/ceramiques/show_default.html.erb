@@ -201,8 +201,19 @@
      ],
     "description": "<%=@ceramique.description%>",
     "brand": {
-      "@type": "Thing",
-      "name": "<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>"
+      "@type": "PetStore",
+      "name": "La Tournées des Moustaches",
+      "telephone": "<%= ENV['TELEPHONE']%>",
+      "image": ["<%=request.original_url%><%= image_path ENV['HOMEPIC']%>"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "45 rue Alphonse de Lamartine",
+        "addressLocality": "Sautron",
+        "addressRegion": "Pays de la Loire",
+        "postalCode": "44880",
+        "addressCountry": "FR"
+      },
+      "priceRange": "€€"
     },
     "offers": {
       "@type": "Offer",
@@ -213,7 +224,7 @@
       "availability": "http://schema.org/InStock",
       "seller": {
         "@type": "Organization",
-        "name": "<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>"
+        "name": "La Tournées des Moustaches"
       }
     }
   }

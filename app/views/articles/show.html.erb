@@ -96,11 +96,11 @@
   "dateModified": "<%= @article.updated_at %>",
   "author": {
     "@type": "Person",
-    "name": "<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>"
+    "name": "La Tournées des Moustaches"
   },
    "publisher": {
     "@type": "Organization",
-    "name": "<%= "#{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize}"%>",
+    "name": "La Tournées des Moustaches",
     "logo": {
       "@type": "ImageObject",
       "url": "<%=request.original_url%><%= image_path ENV['HOMEPIC']%>"
