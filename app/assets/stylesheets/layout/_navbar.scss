@@ -118,7 +118,10 @@
   }
   .nav-bar-list-mobile {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    @media all and (max-width: 768px) {
+      justify-content: space-around;
+    }
     align-items: center;
     position: relative;
     top: 19px;
@@ -188,8 +191,8 @@
   background: white;
   border: 1px solid rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  left: -49%;
-  top: 23px;
+  left: -62%;
+  top: 30px;
   a {
     font-weight: 100;
     display: block;
@@ -275,7 +278,7 @@
   }
 }
 
-@media all and (max-width: 850px) {
+@media all and (max-width: 992px) {
   .laptop-item {
     display: none !important;
   }
