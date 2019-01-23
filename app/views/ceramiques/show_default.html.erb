@@ -191,44 +191,6 @@
 </div>
 
 <% content_for(:after_js) do %>
-  <script type="application/ld+json">
-  {
-    "@context": "http://schema.org/",
-    "@type": "Product",
-    "name": "<%=@ceramique.name.capitalize%>",
-    "image": [
-      "<%=cl_image_path @ceramique.photos[0].path%>"
-     ],
-    "description": "<%=@ceramique.description%>",
-    "brand": {
-      "@type": "PetStore",
-      "name": "La Tournées des Moustaches",
-      "telephone": "<%= ENV['TELEPHONE']%>",
-      "image": ["<%=request.original_url%><%= image_path ENV['HOMEPIC']%>"],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "45 rue Alphonse de Lamartine",
-        "addressLocality": "Sautron",
-        "addressRegion": "Pays de la Loire",
-        "postalCode": "44880",
-        "addressCountry": "FR"
-      },
-      "priceRange": "€€"
-    },
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "EUR",
-      "price": "<%= humanized_money(@ceramique.price).to_s.gsub(",",".")%>",
-      "priceValidUntil": "2020-12-12",
-      "itemCondition": "http://schema.org/UsedCondition",
-      "availability": "http://schema.org/InStock",
-      "seller": {
-        "@type": "Organization",
-        "name": "La Tournées des Moustaches"
-      }
-    }
-  }
-  </script>
   <script
     type="text/javascript"
     async defer
@@ -238,3 +200,4 @@
 ></script>
 <%= render 'shared/facebookshare' %>
 <% end %>
+<%= render 'shared/schema_org_jsons/ceramique_show_json' %>
