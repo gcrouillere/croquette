@@ -2,8 +2,10 @@ ActiveAdmin.register Ceramique, as: 'Produits' do
   permit_params :name, :description, :stock, :weight, :position, :price_cents, :category_id, photos: []
   menu priority: 1
   config.filters = false
+  config.sort_order = 'position_asc'
 
   index do
+    span Category.all.map{|c| c.name}.join("#"), class: "hidden-categories"
     column :id
     column :position
     column :name
@@ -13,12 +15,12 @@ ActiveAdmin.register Ceramique, as: 'Produits' do
     end
     column :stock
     column :weight
-    column "Catégorie" do |ceramique|
+    column "Catégorie", class: "col-category" do |ceramique|
       ceramique.category.name
     end
     column :price_cents
-    column "Nb de ventes - CA", :sortable => 'ceramique.basketlines.sum(:quantity)* ceramique.price' do |ceramique|
-      "#{ceramique.basketlines.joins(:order).where.not("orders.state = ?", "lost").sum(:quantity)} - #{ceramique.basketlines.joins(:order).where.not("orders.state = ?", "lost").sum(:quantity) * ceramique.price} €"
+    column "HIDDEN DESCRIPTION", class: "hidden-desc" do |ceramique|
+      ceramique.description
     end
     actions
   end
@@ -124,6 +126,8 @@ end
       if params[:ceramique][:position].present?
         products_to_manage = Ceramique.where("position IS NOT NULL AND position >= ?", params[:ceramique][:position]).where.not(id: resource.id)
         products_to_manage.each {|product| product.update(position: product.position + 1)}
+        new_ceramiques_order = Ceramique.all.order(position: :asc).order(updated_at: :desc)
+        Ceramique.all.order(position: :asc).order(updated_at: :desc).each{|ceramique| ceramique.update(position: new_ceramiques_order.index(ceramique) + 1)}
       end
     end
 
