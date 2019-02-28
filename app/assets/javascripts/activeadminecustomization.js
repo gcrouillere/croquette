@@ -98,7 +98,7 @@ updatePositionsInDB = (startingPosition) => {
   var urlRoot = window.location.origin;
   $.ajax({
     type: "GET",
-    url: `${urlRoot}/croquettes/update_positions_after_swap_in_admin?finalPositions=[${rowsFinalPositions}]&startingPosition=${startingPosition}`,
+    url: `${urlRoot}/ceramiques/update_positions_after_swap_in_admin?finalPositions=[${rowsFinalPositions}]&startingPosition=${startingPosition}`,
     dataType: "JSON"
   }).done((data) => {
     console.log("done");
