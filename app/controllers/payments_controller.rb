@@ -20,21 +20,6 @@ class PaymentsController < ApplicationController
       redirect_to ceramiques_path and return
     end
 
-    #Check all product still exist
-    @order.basketlines.each do |basketline|
-      if basketline.ceramique.blank?
-        basketline.destroy
-        flash[:error] = t(:products_deleted_from_admin) + " Votre CB n'a pas été débitée."
-        if @order.basketlines.present?
-          redirect_to order_path(@order) and return
-        else
-          @order.update(state: "lost")
-          session[:order] = nil
-          redirect_to ceramiques_path and return
-        end
-      end
-    end
-
     @order.take_away ? @final_amount = @order.amount_cents : @final_amount = @order.amount_cents + @order.port_cents
 
     if params[:method] == "stripe"
@@ -95,7 +80,6 @@ class PaymentsController < ApplicationController
   def final_order_amount
     unless @order.lesson.present?
       costs = Amountcalculation.new(@order).calculate_amount(@order, current_user)
-      flash[:alert] = costs[:msg] if costs[:msg] != ""
       @order.update(amount: costs[:total], port: costs[:port], weight: costs[:weight])
       params[:order] ? @promo = Promo.where(code: params[:order][:promo]).first : @promo = nil
       if @promo
