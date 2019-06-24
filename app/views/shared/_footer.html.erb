@@ -40,10 +40,14 @@
   <div class="footer-center-infos">
     <div class="center-bloc">
       <%= @logositepictag %>
-      <%= link_to "Création du site Guillaume Crouillère", @dev_redirection || session[:dev_redirection_default], class: "own-link" %>
     </div>
   </div>
   <div class="mylink hidden-xs hidden-sm">
     <a id="facebook-contact" href="https://www.facebook.com/latourneedesmoustaches" target="blank"><i class="fab fa-facebook"></i></a>
+  </div>
+  <div class="guillaumelink">
+    <%= link_to @dev_redirection || session[:dev_redirection_default], title: "Créez votre boutique en ligne avec l'agence de Guillaume Crouillere" do %>
+      <%= image_tag  'lego.svg', alt: "Guillaume Crouillere - Developpeur WEB indépendant"%>
+  <% end %>
   </div>
 </div>

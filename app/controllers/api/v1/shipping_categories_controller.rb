@@ -12,6 +12,6 @@ class Api::V1::ShippingCategoriesController < Api::V1::BaseController
 
     shipping_cost = max_fare * weight_partition[:integerDivision] + remaining_cost
 
-    @shipping_category = {name: country, price_cents: (shipping_cost * 100).round / 100.0}
+    @shipping_category = { name: country, price_cents: 0 }
   end
 end

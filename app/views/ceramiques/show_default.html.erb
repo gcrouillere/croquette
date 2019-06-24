@@ -45,7 +45,6 @@
             <div class="description">
               <h1> <%= @ceramique.name%> </h1>
               <%= facebook_share_id("facebookshare") %>
-              <p class="description"> <%= @ceramique.description.gsub(/\n/, '<br>').html_safe%> </p>
               <hr>
             </div>
             <div class="prix-form">
@@ -76,6 +75,11 @@
               <% else %>
                   <h2 class="stock0"><%= t(:out_of_stock) %></h2>
               <% end %>
+            </div>
+            <div class="description">
+              <hr>
+              <p class="description"> <%= @ceramique.description.gsub(/\n/, '<br>').html_safe%> </p>
+
             </div>
           </div>
           </div>
@@ -148,10 +152,6 @@
 
         <div class="product-show-mobile text center">
           <div class="info-add-basket">
-            <div class="description">
-              <p class="description"> <%= @ceramique.description.gsub(/\n/, '<br>').html_safe %> </p>
-              <hr>
-            </div>
             <div class="prix-form">
               <% @ceramique.offer ? discount =  @ceramique.offer.discount : discount = 0 %>
               <h2> <%= humanized_money(@ceramique.price * (1 - discount))%> <%= currency_symbol %> </h2>
@@ -180,6 +180,10 @@
               <% else %>
                   <h2 class="stock0"><%= t(:out_of_stock) %></h2>
               <% end %>
+            </div>
+            <div class="description">
+              <hr>
+              <p class="description"> <%= @ceramique.description.gsub(/\n/, '<br>').html_safe %> </p>
             </div>
           </div>
         </div>

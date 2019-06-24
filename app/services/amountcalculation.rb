@@ -30,7 +30,7 @@ class Amountcalculation
 
     shipping_cost = max_fare * weight_partition[:integerDivision] + remaining_cost
 
-    return {total: amount_ceramique, port: shipping_cost.to_money, weight: total_weight}
+    return {total: amount_ceramique, port: 0.to_money, weight: total_weight}
   end
 
 end

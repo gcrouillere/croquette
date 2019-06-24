@@ -1,0 +1,12 @@
+  <% if user_signed_in? && current_user.admin %>
+    <% article_typing("shipping_info", "vertical", "markdown1", "live-text1", "input1") %>
+    <% @markdown = @markdown1 %>
+    <div class="live-text">
+      <%= render 'shared/articletyping' %>
+    </div>
+  <% else %>
+    <div class="plain-text">
+      <% article_display("shipping_info", "vertical") %>
+      <%= @markdown.html_safe %>
+    </div>
+  <% end %>

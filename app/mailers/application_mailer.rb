@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'contact@'+ENV['APPNAME']+'.com'
+  default from: 'hello@latourneedesmoustaches.fr'
   layout 'mailer'
 end
