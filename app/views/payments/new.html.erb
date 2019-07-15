@@ -13,13 +13,11 @@
           <div class="adress text-center">
             <% unless  @order.take_away %>
 
-              <h3><%=t(:delivery)%></h3>
-              <h4><%=t(:delivery_lead_time, lead_time: @admin.tracking)%></h4>
-              <h4><%= current_user.first_name%> <%= current_user.last_name%></h4>
-              <h4><%= current_user.adress%></h4>
-              <h4><%= current_user.zip_code%> - <%= current_user.city%></h4>
+              <h3><%=t(:delivery_lead_time, lead_time: @admin.tracking)%></h3>
+              <p><%= current_user.first_name%> <%= current_user.last_name%></p>
+              <p><%= current_user.adress%></p>
               <% full_country = ISO3166::Country[current_user.country] %>
-              <h4><%= full_country.translations[I18n.locale.to_s] || full_country.name%></h4>
+              <p><%= current_user.zip_code%> - <%= current_user.city%> - <%= full_country.translations[I18n.locale.to_s] || full_country.name%></p>
               <% unless @order.lesson.present? %>
                 <%= link_to edit_user_registration_path do %>
                   <div class="hidden-xs laptop-link-coord">
@@ -27,6 +25,18 @@
                   </div>
                   <div class="hidden-sm hidden-md hidden-lg mobile-link-coord">
                     <%= t(:contact_update_mobile)%>
+                  </div>
+                <% end %>
+                <% if user_signed_in? && current_user.admin %>
+                  <% article_typing("payment", "vertical", "markdown1", "live-text1", "input1") %>
+                  <% @markdown = @markdown1 %>
+                  <div class="live-text">
+                    <%= render 'shared/articletyping' %>
+                  </div>
+                <% else %>
+                  <div class="plain-text">
+                    <% article_display("payment", "vertical") %>
+                    <%= @markdown.html_safe %>
                   </div>
                 <% end %>
               <% end %>

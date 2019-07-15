@@ -119,7 +119,7 @@ en:
   back_to_shop_404: "Back to shop"
   payment: "Payment"
   delivery: "Package delivery"
-  delivery_lead_time: "Delivery by Colissimo within %{lead_time}, to following address:"
+  delivery_lead_time: "Delivery within %{lead_time}, to following address:"
   contact_update: "UPDATE YOUR CONTACT INFORMATION"
   contact_update_mobile: "UPDATE YOUR CONTACT INFO"
   order_recover: "Pick up you order in shop"

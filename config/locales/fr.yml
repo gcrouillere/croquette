@@ -116,7 +116,7 @@ fr:
   thanks_product_order: "Merci pour votre commande, votre colis va être expédié."
   payment: "Paiement"
   delivery: "Livraison du colis"
-  delivery_lead_time: "Livraison via colissimo, sous %{lead_time}, à l'adresse suivante:"
+  delivery_lead_time: "Livraison sous %{lead_time}, à l'adresse suivante:"
   contact_update: "METTRE A JOUR VOS COORDONNEES"
   contact_update_mobile: "CHANGER VOS COORDONNEES"
   order_recover: "Livraison par La tournée des Moustaches maximum 15km Sautron"
