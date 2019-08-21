@@ -27,7 +27,7 @@
         margin-right: 10px;
         cursor: pointer;
       }
-      i.fa-facebook {
+      i.fab {
        margin-right: 0px;
       }
       h6 {
@@ -56,25 +56,29 @@
   .mylink {
     width: 25%;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
     margin-right: 25px;
-    font-size: 30px;
     a {
+      font-size: 37px;
       color: #19A69C;
     }
   }
-  .fab.fa-facebook {
+  .fab {
     font-size: 35px;
   }
   .guillaumelink {
     position: absolute;
     bottom: 10px;
-    right: 10px;
+    right: 20px;
     align-items: center;
     font-size: 30px;
     a {
       color: #F8C5CA;
+    }
+    img {
+      width: 40px;
     }
   }
 }
@@ -97,6 +101,9 @@ h6.visible {
       margin: 0 auto !important;
       text-align: center;
       min-height: unset !important;
+      a > i {
+        font-size: 25px !important;
+      }
     }
   }
   .footer-center-infos {

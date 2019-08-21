@@ -6,6 +6,9 @@
     <div class="icone-bloc hidden-md hidden-lg">
       <a id="facebook-link" href="https://www.facebook.com/latourneedesmoustaches" target="blank"><i class="fab fa-facebook"></i></a>
     </div>
+    <div class="icone-bloc hidden-md hidden-lg">
+      <a href="https://www.instagram.com/la_tournee_des_moustaches/" target="blank"><i class="fab fa-instagram"></i></a>
+    </div>
     <div class="icone-bloc">
       <%= link_to cgv_path do %>
         <h6><i class="fas fa-book"></i><%= t(:cgv_short)%></h6>
@@ -44,6 +47,7 @@
   </div>
   <div class="mylink hidden-xs hidden-sm">
     <a id="facebook-contact" href="https://www.facebook.com/latourneedesmoustaches" target="blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com/la_tournee_des_moustaches/" target="blank"><i class="fab fa-instagram"></i></a>
   </div>
   <div class="guillaumelink">
     <%= link_to @dev_redirection || session[:dev_redirection_default], title: "Créez votre boutique en ligne avec l'agence de Guillaume Crouillere" do %>
