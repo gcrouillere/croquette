@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :confirmation, :info, :contact, :google906057532e2dbb7e, :robots, :legal, :cgv, :garde_animaux_domicile]
 
   def home
-    @dev_redirection = "https://www.creermonecommerce.fr/"
+    @dev_redirection = "http://www.guillaumecrouillere.fr"
     @ceramiques = Ceramique.order(position: :asc).order(updated_at: :desc).first(3)
     render "home_#{@active_theme.name}"
   end
@@ -12,12 +12,12 @@ class PagesController < ApplicationController
   end
 
   def info
-    @dev_redirection = "https://www.creermonecommerce.fr/#anchor-info"
+    @dev_redirection = "http://www.guillaumecrouillere.fr"
     render "info_#{@active_theme.name}"
   end
 
   def contact
-    @dev_redirection = "https://www.creermonecommerce.fr/produits"
+    @dev_redirection = "http://www.guillaumecrouillere.fr"
     render "contact_#{@active_theme.name}"
   end
 
@@ -26,11 +26,11 @@ class PagesController < ApplicationController
   end
 
   def legal
-    @dev_redirection = "https://www.creermonecommerce.fr/produits"
+    @dev_redirection = "http://www.guillaumecrouillere.fr"
   end
 
   def cgv
-    @dev_redirection = "https://www.creermonecommerce.fr/produits"
+    @dev_redirection = "http://www.guillaumecrouillere.fr"
   end
 
   def google906057532e2dbb7e
