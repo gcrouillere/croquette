@@ -22,9 +22,11 @@
               <% verticale = false %>
               <% classe = "" %>
               <% @ceramique.photos.each do |photo| %>
-                <% photo.height > photo.width ? verticale = true : nil %>
+                <% if photo.height && photo.width %>
+                  <% photo.height > photo.width ? verticale = true : nil %>
+                  <% verticale ? classe = "verticale" : classe = "horizontale"  %>
+                <% end %>
               <% end %>
-              <% verticale ? classe = "verticale" : classe = "horizontale"  %>
               <div class="front-image-div">
                 <%= render 'shared/product_image_overlay' %>
                 <img class="img-front <%= classe %> " id="zoom01" src="<%= cl_image_path @ceramique.photos[0].path, quality: "auto" %>" data-zoom-image="<%= cl_image_path @ceramique.photos[0].path, quality: "auto" %>" alt="<%=@ceramique.name%>">
