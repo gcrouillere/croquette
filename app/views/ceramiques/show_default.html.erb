@@ -26,6 +26,8 @@
                 <% if photo.height && photo.width %>
                   <% photo.height > photo.width ? verticale = true : nil %>
                   <% verticale ? classe = "verticale" : classe = "horizontale"  %>
+                <% else %>
+                  <% classe = "horizontale"  %>
                 <% end %>
               <% end %>
               <div class="front-image-div">
