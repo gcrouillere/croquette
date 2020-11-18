@@ -20,7 +20,10 @@ class Amountcalculation
 
     weight_partition = { integerDivision: total_weight / 30000, remainingWeight: total_weight % 30000 }
 
-    if user
+    if user && user.zip_code.match(/44\d{3}$/)
+      max_fare = 0
+      remaining_cost = 0
+    elsif user
       max_fare = ShippingCategory.where(alpha2: user.country).where("weight >= 30000", total_weight).max.price_cents.to_f / 100
       remaining_cost = ShippingCategory.where(alpha2: user.country).where("weight >= ?", weight_partition[:remainingWeight]).min.price_cents.to_f / 100
     else
@@ -30,7 +33,7 @@ class Amountcalculation
 
     shipping_cost = max_fare * weight_partition[:integerDivision] + remaining_cost
 
-    return {total: amount_ceramique, port: 0.to_money, weight: total_weight}
+    return { total: amount_ceramique, port: shipping_cost.to_money, weight: total_weight }
   end
 
 end

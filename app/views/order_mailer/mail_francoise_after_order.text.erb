@@ -2,7 +2,7 @@
 
 Tu as reçu une nouvelle commande. Voici le détail de cette commande :
 
-Client: <%= @user.first_name %> <%= @user.last_name %> - <%= @user.email %>
+Client: <%= @user.first_name %> <%= @user.last_name %> - <%= @user.email %> - tel: <%= @user.phone || "téléphone non renseigné par le client" %>
 
 <% @order.basketlines.each do |basketline| %>
   Référence du produit dans l'administration: ID: <%= basketline.ceramique.id %> - <%= basketline.ceramique.name.capitalize %>

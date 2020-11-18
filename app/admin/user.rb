@@ -1,5 +1,5 @@
 ActiveAdmin.register User, as: 'Clients' do
-  actions  :index, :show, :update, :edit
+  actions  :index, :show, :update, :edit, :destroy
   permit_params :tracking
   menu priority: 7
   config.filters = false
@@ -103,6 +103,7 @@ ActiveAdmin.register User, as: 'Clients' do
         row :first_name
         row :last_name
         row :email
+        row :phone
         unless user.adress == "------ à mettre à jour ------"
           row "Adresse" do |user|
             "#{user.adress} - #{user.zip_code} - #{user.city}"
@@ -141,6 +142,17 @@ ActiveAdmin.register User, as: 'Clients' do
         end
         redirect_to admin_clients_path and return if resource.valid?
       end
+    end
+
+    def destroy
+      unless resource.orders.where(state: "paid").blank?
+        flash[:alert] = "Ce client est lié à une commande payée, il ne peut être supprimé"
+        redirect_to admin_clients_path and return
+      else
+        resource.orders.destroy_all
+      end
+
+      super
     end
   end
 

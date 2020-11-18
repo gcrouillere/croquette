@@ -11,6 +11,7 @@
     <%= f.input :zip_code, required: true, autofocus: true, :input_html => { :id => "postal_code" } %>
     <%= f.input :country, required: true, :input_html => { :id => "country" } %>
     <%= f.input :city, required: true, autofocus: true, :input_html => { :id => "locality" } %>
+    <%= f.input :phone, required: false, autofocus: true %>
     <%= f.input :email, required: true, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

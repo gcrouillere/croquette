@@ -23,6 +23,7 @@ en:
   account_creation: "Create an account to finalize your order"
   alternate_account_creation: "Or create an account:"
   shipping_info_hint: "This info will be used to ship your orders"
+  shipping_info_hint_phone: "This info will be used to ship your orders"
   min_char: "characters minimum"
   term_of_service: "terms of service"
   facebook_connect: "Create an account with"

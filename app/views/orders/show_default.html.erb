@@ -27,6 +27,7 @@
       <div class="total">
         <div class="cost-details">
           <%= render 'shared/shipping_cost_bloc' %>
+          <p class="free-port">Frais de port offerts en Loire Atlantique</p>
           <h3 class="hidden-sm total_amount"><%= t(:total_amount)%>: <%= humanized_money(@amount + @port) %> <%= currency_symbol %></h3>
           <h4 class="hidden-md hidden-lg total_amount"><%= t(:total_amount)%>: <%= humanized_money(@amount + @port) %> <%= currency_symbol %></h4>
         </div>

@@ -70,6 +70,7 @@ class ApplicationController < ActionController::Base
       :zip_code,
       :city,
       :country,
+      :phone,
       :provider,
       :uid,
       :facebook_picture_url,
@@ -86,6 +87,7 @@ class ApplicationController < ActionController::Base
       :zip_code,
       :city,
       :country,
+      :phone
       ])
   end
 

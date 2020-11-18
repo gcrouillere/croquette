@@ -5,6 +5,7 @@
       var weight = <%= @weight %>;
       var urlRoot = window.location.origin;
       var port = <%= @port.to_f %>;
+      var user_in_LA = <%= (current_user || @order.user)&.zip_code&.match(/44\d{3}$/).present? || false %>
 
       $('.cost-details, .cost-details-mobile').attr("port-cost", port)
       $('.cost-details, .cost-details-mobile').attr("code-check", 0)
@@ -19,7 +20,7 @@
           } else {
             var country = $('#user_country').val();
           }
-          var url_params = "?country=" + country + "&weight=" + weight
+          var url_params = "?country=" + country + "&weight=" + weight + "&user_in_LA=" + user_in_LA
           updateDOMWithShippingData(urlRoot, url_params, false)
 
         } else {
@@ -35,7 +36,7 @@
 
     $('#user_country, #user_country_mobile').on('change', function(event) {
       var country = $(this).val();
-      var url_params = "?country=" + country + "&weight=" + weight
+      var url_params = "?country=" + country + "&weight=" + weight + "&user_in_LA=" + user_in_LA
       updateDOMWithShippingData(urlRoot, url_params, true)
     });
 

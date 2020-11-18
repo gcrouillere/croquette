@@ -22,6 +22,7 @@
     <%= f.input :zip_code, required: true, hint: (t(:shipping_info_hint)), :input_html => { :id => "postal_code" } %>
     <%= f.input :city, required: true, hint: (t(:shipping_info_hint)), :input_html => { :id => "locality" } %>
     <%= f.input :country, required: true, hint: (t(:shipping_info_hint)), :input_html => { :id => "country" } %>
+    <%= f.input :phone, required: false, hint: (t(:shipping_info_hint_phone)), :input_html => { :id => "phone" }  %>
     <%= f.input :email, required: true %>
     <%= f.input :password, required: true, hint: ("#{@minimum_password_length} #{t(:min_char)}" if @minimum_password_length) %>
     <%= f.input :password_confirmation, required: true %>

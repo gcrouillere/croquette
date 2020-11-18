@@ -7,6 +7,14 @@
 
 <%= render 'shared/home_pics' %>
 
+<div class="homepage-logo-strip">
+  <%= cl_image_tag @homepicpath, class: "homepage-logo hidden-xs", alt: "La camionnette de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} livrant les croquettes" %>
+  <%= cl_image_tag @homepicpathmobile, class: "homepage-logo hidden-sm hidden-md hidden-lg", alt: "La camionnette de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} livrant les croquettes" %>
+  <%= photo_update('productphoto', 30, '', '', 30, '.homepic', "Mise à jour photo d'accueil")%>
+  <%= photo_update('productphotomobile', 30, '', '', 412, '.homepicmobile', "Mise à jour photo d'accueil pour mobiles")%>
+  <%= photo_update('logophoto', 30, '', '', 785, '.logopic', "Mise à jour logo")%>
+</div>
+
 <div class="homepage-text">
   <% if user_signed_in? && current_user.admin %>
       <% article_typing("accueil", "vertical", "markdown1", "live-text1", "input1") %>
@@ -20,14 +28,6 @@
       <%= @markdown.html_safe %>
     </div>
   <% end %>
-</div>
-
-<div class="homepage-logo-strip">
-  <%= cl_image_tag @homepicpath, class: "homepage-logo hidden-xs", alt: "La camionnette de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} livrant les croquettes" %>
-  <%= cl_image_tag @homepicpathmobile, class: "homepage-logo hidden-sm hidden-md hidden-lg", alt: "La camionnette de #{ENV['FIRSTNAME'].capitalize} #{ENV['LASTNAME'].capitalize} livrant les croquettes" %>
-  <%= photo_update('productphoto', 30, '', '', 30, '.homepic', "Mise à jour photo d'accueil")%>
-  <%= photo_update('productphotomobile', 30, '', '', 412, '.homepicmobile', "Mise à jour photo d'accueil pour mobiles")%>
-  <%= photo_update('logophoto', 30, '', '', 785, '.logopic', "Mise à jour logo")%>
 </div>
 
 <div class="company-services hidden-xs">
