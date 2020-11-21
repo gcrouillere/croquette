@@ -74,6 +74,7 @@
 
       <div class="cost-details-mobile">
         <%= render 'shared/shipping_cost_bloc_mobile' %>
+        <p class="free-port">Frais de port offerts en Loire Atlantique</p>
         <h3 class="h3mobile total_amount"><%= t(:total_amount)%>: <%= humanized_money(@amount + @port) %> <%= currency_symbol %></h3>
       </div>
       <div class="total mobile">
